@@ -1,0 +1,468 @@
+/* Updated: 2025-09-28T02:33:19.490Z */
+/* Updated: 2025-09-28T02:27:55.000Z */
+/* Updated: 2025-09-28T02:13:47.267Z */
+/* Updated: 2025-09-28T01:47:30.585Z */
+/* Updated: 2025-09-28T01:43:28.588Z */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+@import "tw-animate-css";
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* Shadcn/UI colors - Dark theme */
+  --color-background: #0F172A;
+  --color-foreground: #FFFFFF;
+
+  --color-card: #1E293B;
+  --color-card-foreground: #FFFFFF;
+
+  --color-popover: #1E293B;
+  --color-popover-foreground: #FFFFFF;
+
+  --color-primary: #10B981;
+  --color-primary-foreground: #FFFFFF;
+
+  --color-secondary: #1E293B;
+  --color-secondary-foreground: #FFFFFF;
+
+  --color-muted: #1E293B;
+  --color-muted-foreground: #94A3B8;
+
+  --color-accent: #10B981;
+  --color-accent-foreground: #FFFFFF;
+
+  --color-destructive: #ef4444; /* Default red, adjust if needed */
+  --color-destructive-foreground: #fafafa;
+
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-input: #1E293B;
+  --color-ring: #10B981;
+
+  --color-chart-1: #e67e22;
+  --color-chart-2: #2d8659;
+  --color-chart-3: #1e3a5f;
+  --color-chart-4: #f1c40f;
+  --color-chart-5: #e74c3c;
+
+  --color-sidebar: #0F172A;
+  --color-sidebar-foreground: #FFFFFF;
+  --color-sidebar-primary: #10B981;
+  --color-sidebar-primary-foreground: #FFFFFF;
+  --color-sidebar-accent: #1E293B;
+  --color-sidebar-accent-foreground: #FFFFFF;
+  --color-sidebar-border: rgba(255, 255, 255, 0.1);
+  --color-sidebar-ring: #10B981;
+
+  --radius-lg: 0.5rem;
+  --radius-md: calc(0.5rem - 2px);
+  --radius-sm: calc(0.5rem - 4px);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+
+  /* GamesFull specific colors */
+  --color-primary-dark: #0F172A;
+  --color-secondary-dark: #1E293B;
+  --color-accent-green: #10B981;
+  --color-accent-green-dark: #059669;
+  --color-teal-accent: #14B8A6;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #94A3B8;
+  --color-text-muted: #64748B;
+
+  /* GamesFull specific typography */
+  --font-sans: "Inter", sans-serif;
+  --font-hero-title: var(--font-sans);
+  --font-section-title: var(--font-sans);
+  --font-card-title: var(--font-sans);
+  --font-body: var(--font-sans);
+  --font-small: var(--font-sans);
+  --font-badge: var(--font-sans);
+
+  /* Gamer Science Blue palette (pedida por el usuario) */
+  --color-science-blue-50: #f0f7ff;
+  --color-science-blue-100: #e0effe;
+  --color-science-blue-200: #b9dffe;
+  --color-science-blue-300: #7cc5fd;
+  --color-science-blue-400: #36a9fa;
+  --color-science-blue-500: #0c8eeb;
+  --color-science-blue-600: #0066b9;
+  --color-science-blue-700: #0157a3;
+  --color-science-blue-800: #064b86;
+  --color-science-blue-900: #0b3f6f;
+  --color-science-blue-950: #07284a;
+
+  /* Derivados y acentos gamer */
+  --gamer-accent: var(--color-science-blue-500);
+  --gamer-accent-2: #7c3aed; /* morado gamer complementario */
+  --gamer-glow: color-mix(in oklab, var(--gamer-accent) 70%, white 30%);
+  --gamer-surface: color-mix(in oklab, var(--color-secondary-dark) 85%, black 15%);
+  --gamer-surface-2: color-mix(in oklab, var(--color-secondary-dark) 70%, var(--color-science-blue-950) 30%);
+  --gamer-gradient: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-science-blue-950) 35%, var(--color-science-blue-700) 70%, var(--gamer-accent) 100%);
+  --gamer-card-gradient: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.02) 100%);
+  --gamer-mask-fade-x: linear-gradient(90deg, transparent 0%, black 6%, black 94%, transparent 100%);
+
+  /* Keyframes para animaciones suaves y microinteracciones */
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0); }
+  }
+  @keyframes glow {
+    0% { box-shadow: 0 0 0 rgba(0,0,0,0), 0 0 0 rgba(0,0,0,0); }
+    50% { box-shadow: 0 0 24px -6px color-mix(in oklab, var(--gamer-accent) 60%, transparent), 0 0 48px -12px color-mix(in oklab, var(--gamer-accent-2) 40%, transparent); }
+    100% { box-shadow: 0 0 0 rgba(0,0,0,0), 0 0 0 rgba(0,0,0,0); }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  @keyframes tilt-in {
+    from { opacity: 0; transform: perspective(800px) rotateX(8deg) translateY(10px) scale(0.98); }
+    to { opacity: 1; transform: perspective(800px) rotateX(0deg) translateY(0) scale(1); }
+  }
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-border);
+  }
+}
+
+@layer base {
+  /* =============================
+     Paleta y helpers de acento
+     ============================= */
+  .gamer-gradient-bg {
+    /* Fondo con gradiente gamer usando la paleta Science Blue */
+    background: var(--gamer-gradient);
+  }
+  .mask-fade-x {
+    /* Máscara para desvanecer bordes en carruseles scrollables */
+    -webkit-mask-image: var(--gamer-mask-fade-x);
+            mask-image: var(--gamer-mask-fade-x);
+  }
+
+  /* =============================
+     Tipografía destacada
+     ============================= */
+  .section-title {
+    /* Título de sección con subrayado brillante */
+    position: relative;
+    letter-spacing: 0.3px;
+  }
+  .section-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 64px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-science-blue-500), var(--color-science-blue-300));
+    border-radius: 999px;
+    box-shadow: 0 0 12px color-mix(in oklab, var(--color-science-blue-500) 60%, transparent);
+  }
+
+  /* =============================
+     Botones (microinteracciones)
+     ============================= */
+  .btn-gamer-primary {
+    /* Botón principal con glow, escalado suave y alto contraste */
+    background: linear-gradient(180deg, var(--color-science-blue-500), var(--color-science-blue-600));
+    color: #fff;
+    border: 1px solid color-mix(in oklab, var(--color-science-blue-400) 70%, transparent);
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-weight: 600;
+    transition: transform 180ms ease, box-shadow 220ms ease, background 220ms ease, filter 220ms ease;
+    box-shadow: 0 6px 18px -6px color-mix(in oklab, var(--color-science-blue-600) 50%, transparent);
+    will-change: transform, box-shadow;
+  }
+  .btn-gamer-primary:hover {
+    transform: translateY(-1px);
+    background: linear-gradient(180deg, var(--color-science-blue-400), var(--color-science-blue-600));
+    box-shadow: 0 10px 24px -6px color-mix(in oklab, var(--color-science-blue-500) 65%, transparent), 0 0 0 1px color-mix(in oklab, var(--color-science-blue-300) 35%, transparent) inset;
+    filter: saturate(1.1);
+  }
+  .btn-gamer-primary:active {
+    transform: translateY(0);
+    filter: brightness(0.98);
+  }
+
+  .btn-gamer-ghost {
+    /* Botón secundario con borde luminiscente */
+    background: transparent;
+    color: var(--color-science-blue-300);
+    border: 1px solid color-mix(in oklab, var(--color-science-blue-400) 30%, transparent);
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-weight: 600;
+    transition: border-color 180ms ease, color 180ms ease, background 180ms ease, transform 180ms ease;
+  }
+  .btn-gamer-ghost:hover {
+    color: var(--color-science-blue-200);
+    border-color: color-mix(in oklab, var(--color-science-blue-400) 60%, transparent);
+    background: linear-gradient(180deg, rgba(12,142,235,0.08), rgba(0,102,185,0.12));
+    transform: translateY(-1px);
+  }
+
+  /* =============================
+     Links con subrayado animado
+     ============================= */
+  .link-glow {
+    color: var(--color-science-blue-300);
+    text-decoration: none;
+    position: relative;
+    transition: color 160ms ease;
+  }
+  .link-glow::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -4px;
+    height: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    background: linear-gradient(90deg, var(--color-science-blue-400), var(--color-science-blue-200));
+    transition: transform 220ms ease;
+  }
+  .link-glow:hover { color: var(--color-science-blue-100); }
+  .link-glow:hover::after { transform: scaleX(1); }
+
+  /* =============================
+     Tarjetas de juego/colección
+     ============================= */
+  .card-gamer {
+    /* Tarjeta con superficie translúcida y borde sutil */
+    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: transform 180ms ease, box-shadow 220ms ease, border-color 220ms ease;
+    box-shadow: 0 8px 20px -12px rgba(0,0,0,0.6);
+    backdrop-filter: saturate(120%) blur(6px);
+    will-change: transform, box-shadow;
+  }
+  .card-gamer:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in oklab, var(--color-science-blue-500) 40%, transparent);
+    box-shadow: 0 16px 36px -12px color-mix(in oklab, var(--color-science-blue-700) 35%, transparent);
+  }
+
+  .game-card { position: relative; isolation: isolate; }
+  .game-card__img {
+    width: 100%; height: auto; display: block;
+    transform-origin: center;
+    transition: transform 250ms ease, filter 250ms ease;
+    border-radius: 12px;
+  }
+  .game-card:hover .game-card__img { transform: scale(1.04); filter: saturate(1.05) contrast(1.02); }
+  .game-card__overlay {
+    /* Gradiente para mejorar legibilidad del título */
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(6,75,134,0.5) 80%, rgba(7,40,74,0.9) 100%);
+    opacity: 0; transition: opacity 220ms ease; border-radius: 12px;
+  }
+  .game-card:hover .game-card__overlay { opacity: 1; }
+  .game-card__title {
+    position: absolute; left: 12px; right: 12px; bottom: 12px;
+    color: #fff; font-weight: 700;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  }
+  .game-card__badge {
+    position: absolute; top: 10px; left: 10px;
+    background: linear-gradient(180deg, var(--color-science-blue-500), var(--color-science-blue-700));
+    color: #fff; font-size: 12px; font-weight: 700; letter-spacing: 0.4px;
+    padding: 6px 10px; border-radius: 999px;
+    box-shadow: 0 6px 16px -8px color-mix(in oklab, var(--color-science-blue-700) 60%, transparent);
+  }
+
+  /* =============================
+     Carrusel horizontal (scroll-snap)
+     ============================= */
+  .carousel {
+    /* Contenedor del carrusel con máscara para bordes suaves */
+    position: relative;
+  }
+  .carousel__track {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 76%;
+    gap: 16px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+  .carousel__track::-webkit-scrollbar { height: 8px; }
+  .carousel__track::-webkit-scrollbar-thumb {
+    background: color-mix(in oklab, var(--color-science-blue-700) 50%, transparent);
+    border-radius: 999px;
+  }
+  .carousel__item { scroll-snap-align: start; }
+
+  @media (min-width: 640px) {
+    .carousel__track { grid-auto-columns: 48%; }
+  }
+  @media (min-width: 1024px) {
+    .carousel__track { grid-auto-columns: 24%; }
+  }
+
+  /* =============================
+     Grid dinámico de juegos
+     ============================= */
+  .games-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+  @media (min-width: 640px) {
+    .games-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1024px) {
+    .games-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+  }
+  @media (min-width: 1280px) {
+    .games-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  }
+
+  /* =============================
+     Secciones diferenciadas
+     ============================= */
+  .section--featured { /* Destacados: fondo con gradiente profundo */
+    background: linear-gradient(180deg, rgba(7,40,74,0.8), rgba(11,63,111,0.25));
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .section--latest { /* Últimas novedades: superficie translúcida */
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  }
+  .section--collections { /* Colecciones: contraste azulado */
+    background: linear-gradient(180deg, rgba(12,142,235,0.08), rgba(7,40,74,0.12));
+  }
+
+  /* =============================
+     Footer moderno + TikTok
+     ============================= */
+  .footer-modern {
+    background: linear-gradient(180deg, rgba(2,6,23,1) 0%, rgba(11,63,111,0.25) 100%);
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer-modern__links a { color: var(--color-text-secondary); transition: color 160ms ease; }
+  .footer-modern__links a:hover { color: var(--color-science-blue-100); }
+
+  .social-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.08); transition: transform 160ms ease, box-shadow 220ms ease, border-color 160ms ease; }
+  .social-link:hover { transform: translateY(-1px); border-color: color-mix(in oklab, var(--color-science-blue-400) 40%, transparent); box-shadow: 0 10px 24px -10px rgba(12,142,235,0.45); }
+
+  .social-link--tiktok {
+    /* Estilo específico para TikTok: doble tono inspirado en su marca */
+    background: linear-gradient(135deg, #25F4EE 0%, #000 40%, #FE2C55 100%);
+    color: #fff;
+  }
+
+  /* =============================
+     Animaciones suaves globales
+     ============================= */
+  .animate-fade-up { animation: fade-up 420ms ease both; }
+  .animate-float { animation: float 6s ease-in-out infinite; }
+  .animate-glow { animation: glow 2.8s ease-in-out infinite; }
+  .loading-shimmer {
+    background: linear-gradient(90deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.6s linear infinite;
+  }
+
+  /* Respeto a usuarios con reducción de movimiento */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-up, .animate-float, .animate-glow, .loading-shimmer,
+    .btn-gamer-primary, .btn-gamer-ghost, .game-card__img, .link-glow::after {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+
+  /* =============================
+     Extras: header, logo, badges y utilidades responsivas
+     ============================= */
+  .logo-glow { /* Efecto sutil para el logo que me enviaste */
+    filter: drop-shadow(0 4px 12px color-mix(in oklab, var(--color-science-blue-600) 45%, transparent));
+    transition: filter 220ms ease, transform 220ms ease;
+  }
+  .logo-glow:hover { filter: drop-shadow(0 6px 18px rgba(12,142,235,0.5)); transform: translateY(-1px); }
+
+  .nav-link {
+    color: var(--color-text-primary);
+    opacity: 0.9;
+    transition: color 160ms ease, opacity 160ms ease, transform 160ms ease;
+  }
+  .nav-link:hover { color: var(--color-science-blue-200); opacity: 1; transform: translateY(-1px); }
+  .nav-link--active { color: var(--color-science-blue-100); text-shadow: 0 0 18px color-mix(in oklab, var(--color-science-blue-400) 45%, transparent); }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 10px; border-radius: 999px;
+    background: rgba(12,142,235,0.12);
+    color: var(--color-science-blue-100);
+    border: 1px solid rgba(12,142,235,0.25);
+  }
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 8px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+    color: var(--color-text-secondary);
+    transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+  }
+  .chip:hover { background: rgba(12,142,235,0.08); border-color: rgba(12,142,235,0.25); transform: translateY(-1px); }
+
+  .img-tilt-hover { transition: transform 220ms ease, filter 220ms ease; transform-origin: center; }
+  .img-tilt-hover:hover { transform: perspective(800px) rotateX(2deg) rotateY(-2deg) scale(1.02); filter: saturate(1.05); }
+
+  .scroll-reveal { opacity: 0; animation: fade-up 560ms ease both; }
+
+  /* Tipografía utilitaria para títulos y descripciones */
+  .h1-hero { font-family: var(--font-hero-title); font-weight: 800; letter-spacing: -0.02em; }
+  .h2-section { font-family: var(--font-section-title); font-weight: 700; letter-spacing: -0.01em; }
+  .body-copy { font-family: var(--font-body); color: var(--color-text-secondary); }
+
+  /* Espaciados de sección coherentes */
+  .section-pad { padding-block: 56px; }
+  @media (min-width: 768px) { .section-pad { padding-block: 80px; } }
+}
+
+/* Hide Next.js error overlay portal */
+nextjs-portal {
+  display: none !important;
+}
